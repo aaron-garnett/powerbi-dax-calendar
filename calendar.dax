@@ -1,0 +1,46 @@
+Calendar =
+ADDCOLUMNS (
+    CALENDARAUTO (),
+    "Date Serial",
+        YEAR ( [Date] ) * 10000
+            + MONTH ( [Date] ) * 100
+            + DAY ( [Date] ),
+    "Weekday No", WEEKDAY ( [Date], 2 ),
+    "Weekday", FORMAT ( [Date], "dddd" ),
+    "Week of",
+        "Week of "
+            & FORMAT ( [Date] - WEEKDAY ( [Date], 3 ), "Short Date" ),
+    "Week ending",
+        "Week ending "
+            & FORMAT ( 6 + [Date] - WEEKDAY ( [Date], 3 ), "Short Date" ),
+    "BC Week Serial",
+        YEAR ( 6 + [Date] - WEEKDAY ( [Date], 3 ) ) * 100
+            + WEEKNUM ( 6 + [Date] - WEEKDAY ( [Date], 3 ) ),
+    "Month No", MONTH ( [Date] ),
+    "Mon", FORMAT ( [Date], "MMM" ),
+    "Month", FORMAT ( [Date], "MMMM" ),
+    "Mon Year", FORMAT ( [Date], "MMM yyyy" ),
+    "Month Serial",
+        YEAR ( [Date] ) * 100
+            + MONTH ( [Date] ),
+    "Qtr", FORMAT ( [Date], "\Qq" ),
+    "Year Qtr", FORMAT ( [Date], "yyyy \Qq" ),
+    "Year", YEAR ( [Date] ),
+    "BC Month No",
+        MONTH ( 6 + [Date] - WEEKDAY ( [Date], 3 ) ),
+    "BC Mon",
+        FORMAT ( 6 + [Date] - WEEKDAY ( [Date], 3 ), "MMM" ),
+    "BC Month",
+        FORMAT ( 6 + [Date] - WEEKDAY ( [Date], 3 ), "MMMM" ),
+    "BC Mon Year",
+        FORMAT ( 6 + [Date] - WEEKDAY ( [Date], 3 ), "MMM yyyy" ),
+    "BC Month Serial",
+        YEAR ( 6 + [Date] - WEEKDAY ( [Date], 3 ) ) * 100
+            + MONTH ( 6 + [Date] - WEEKDAY ( [Date], 3 ) ),
+    "BC Qtr",
+        FORMAT ( 6 + [Date] - WEEKDAY ( [Date], 3 ), "\Qq" ),
+    "BC Year Qtr",
+        FORMAT ( 6 + [Date] - WEEKDAY ( [Date], 3 ), "yyyy \Qq" ),
+    "BC Year",
+        YEAR ( 6 + [Date] - WEEKDAY ( [Date], 3 ) )
+)
